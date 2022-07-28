@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import {Evaluation} from './helper/evaluation';
+import { Evaluation } from "./helper/evaluation";
 
 function App() {
   const [value, setvalue] = useState("");
   const [expression, setexpression] = useState("");
-  const [ans , setans] = useState(0);
+  const [ans, setans] = useState(0);
   const leftKeys = [
     "AC",
     "+/-",
@@ -24,11 +24,10 @@ function App() {
   ];
   const rightKeys = ["*", "/", "-", "+", "="];
   let exp = "";
- 
+
   function AddExpression(key) {
-   
     // clear input
-    if(key == 'AC') {
+    if (key == "AC") {
       setvalue("");
       setexpression("");
       setans(0);
@@ -36,9 +35,9 @@ function App() {
     }
 
     exp += key;
-
     //  set Expression to dom evaluation box
-    setexpression(function(prev) {
+    setexpression(function (prev) {
+      setans(0);
       let prevSign = prev.charAt(prev.length - 1);
       let len = prev.length;
       if (
@@ -58,29 +57,27 @@ function App() {
     setvalue(expression);
   }
 
-
   function Evaluate() {
-    var ans =  eval(expression);
+    var ans = eval(expression);
     setans(ans);
     setvalue("");
     exp = "";
   }
 
-
   return (
     <div className="container">
-    <div className="cal-input-container">
-        {
-          ans ? (
-             <>
-             <span className="result">{ans}</span>
-             </>
-          ) : (
-            <>
-               <input type="text" onChange={(e) => { setvalue(e.target.value);  setexpression(e.target.value)}}  value={expression || value} />
-            </>
-          )
-        }
+      <div className="cal-input-container">
+       <div className="result">
+       {ans && <span>{ans}</span>}
+       </div>
+        <input
+          type="text"
+          onChange={(e) => {
+            setvalue(e.target.value);
+            setexpression(e.target.value);
+          }}
+          value={expression || value}
+        />
       </div>
       <div className="cal-key-container">
         <div className="cal-left-key">

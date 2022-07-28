@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Evaluation } from "./helper/evaluation";
+
 
 function App() {
   const [value, setvalue] = useState("");
@@ -27,7 +27,7 @@ function App() {
 
   function AddExpression(key) {
     // clear input
-    if (key == "AC") {
+    if (key === "AC") {
       setvalue("");
       setexpression("");
       setans(0);
@@ -41,10 +41,10 @@ function App() {
       let prevSign = prev.charAt(prev.length - 1);
       let len = prev.length;
       if (
-        prevSign == "+" ||
-        prevSign == "-" ||
-        prevSign == "*" ||
-        prevSign == "/"
+        prevSign === "+" ||
+        prevSign === "-" ||
+        prevSign === "*" ||
+        prevSign === "/"
       ) {
         if (key.charCodeAt(0) >= 48 && key.charCodeAt(0) <= 97) {
           return prev + exp;

@@ -28,8 +28,7 @@ function App() {
   function AddExpression(key) {
     // clear input
     if (key === "AC") {
-      setvalue("");
-      setexpression("");
+      reset();
       setans(0);
       return;
     }
@@ -58,10 +57,15 @@ function App() {
   }
 
   function Evaluate() {
-    var ans = eval(expression);
+    var ans = eval(expression) // eslint-disable-line
     setans(ans);
-    setvalue("");
+    reset();
     exp = "";
+  }
+
+  function reset(){
+    setvalue("");
+    setexpression("");
   }
 
   return (
